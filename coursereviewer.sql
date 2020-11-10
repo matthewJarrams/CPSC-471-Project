@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `coursereviewer` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `coursereviewer`;
 -- MySQL dump 10.13  Distrib 8.0.22, for Win64 (x86_64)
 --
 -- Host: localhost    Database: coursereviewer
@@ -84,6 +86,36 @@ CREATE TABLE `club` (
 LOCK TABLES `club` WRITE;
 /*!40000 ALTER TABLE `club` DISABLE KEYS */;
 /*!40000 ALTER TABLE `club` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `club_review`
+--
+
+DROP TABLE IF EXISTS `club_review`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `club_review` (
+  `Review_Id` int NOT NULL,
+  `CName` varchar(45) NOT NULL,
+  `Cost` varchar(45) DEFAULT NULL,
+  `Academic` varchar(45) DEFAULT NULL,
+  `Leisure` varchar(45) DEFAULT NULL,
+  `Social` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`Review_Id`,`CName`),
+  KEY `CName_idx` (`CName`),
+  CONSTRAINT `CName` FOREIGN KEY (`CName`) REFERENCES `club` (`CName`),
+  CONSTRAINT `Review_Id` FOREIGN KEY (`Review_Id`) REFERENCES `review` (`Review_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `club_review`
+--
+
+LOCK TABLES `club_review` WRITE;
+/*!40000 ALTER TABLE `club_review` DISABLE KEYS */;
+/*!40000 ALTER TABLE `club_review` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -202,4 +234,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-09 17:44:31
+-- Dump completed on 2020-11-09 18:08:54
