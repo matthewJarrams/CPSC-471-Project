@@ -190,6 +190,7 @@ CREATE TABLE `user` (
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT INTO `user` VALUES (0,'Spongbob','Squarepants','2020/11/09','spongebob','squarepants',1,0,'spongbob@gmail.com','Burger Maker','University of Calgary');
+INSERT INTO `user` Values(1, 'Patrick', 'Starfish', '2020/12/12',  'PatStar', 'password', 1, 0, 'patrck@hotmail.com', 'SuperReview', 'U of C');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
