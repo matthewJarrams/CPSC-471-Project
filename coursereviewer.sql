@@ -126,7 +126,7 @@ DROP TABLE IF EXISTS `department`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `department` (
-  `D_code` int NOT NULL,
+  `D_code` varchar(45) NOT NULL,
   `D_description` varchar(45) DEFAULT NULL,
   `D_name` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`D_code`)
@@ -176,7 +176,7 @@ DROP TABLE IF EXISTS `undergraduate_student`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `undergraduate_student` (
   `ID` int NOT NULL,
-  `D_code` int DEFAULT NULL,
+  `D_code` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   KEY `D_code_idx` (`D_code`),
   CONSTRAINT `D_code` FOREIGN KEY (`D_code`) REFERENCES `department` (`D_code`)
