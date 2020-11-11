@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `coursereviewer` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `coursereviewer`;
 -- MySQL dump 10.13  Distrib 8.0.22, for Win64 (x86_64)
 --
 -- Host: localhost    Database: coursereviewer
@@ -89,36 +87,6 @@ LOCK TABLES `club` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `club_review`
---
-
-DROP TABLE IF EXISTS `club_review`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `club_review` (
-  `Review_Id` int NOT NULL,
-  `CName` varchar(45) NOT NULL,
-  `Cost` varchar(45) DEFAULT NULL,
-  `Academic` varchar(45) DEFAULT NULL,
-  `Leisure` varchar(45) DEFAULT NULL,
-  `Social` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`Review_Id`,`CName`),
-  KEY `CName_idx` (`CName`),
-  CONSTRAINT `CName` FOREIGN KEY (`CName`) REFERENCES `club` (`CName`),
-  CONSTRAINT `Review_Id` FOREIGN KEY (`Review_Id`) REFERENCES `review` (`Review_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `club_review`
---
-
-LOCK TABLES `club_review` WRITE;
-/*!40000 ALTER TABLE `club_review` DISABLE KEYS */;
-/*!40000 ALTER TABLE `club_review` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `department`
 --
 
@@ -126,7 +94,7 @@ DROP TABLE IF EXISTS `department`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `department` (
-  `D_code` varchar(45) NOT NULL,
+
   `D_description` varchar(45) DEFAULT NULL,
   `D_name` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`D_code`)
@@ -176,7 +144,7 @@ DROP TABLE IF EXISTS `undergraduate_student`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `undergraduate_student` (
   `ID` int NOT NULL,
-  `D_code` varchar(45) DEFAULT NULL,
+  
   PRIMARY KEY (`ID`),
   KEY `D_code_idx` (`D_code`),
   CONSTRAINT `D_code` FOREIGN KEY (`D_code`) REFERENCES `department` (`D_code`)
@@ -234,4 +202,3 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-09 18:08:54
