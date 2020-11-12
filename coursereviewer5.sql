@@ -28,7 +28,7 @@ CREATE TABLE `building` (
   `Building_name` varchar(45) NOT NULL,
   `Type` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`Building_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -57,7 +57,7 @@ CREATE TABLE `building_review` (
   KEY `BuildingNameReviewFK_idx` (`Building_name`),
   CONSTRAINT `BuildingNameReviewFK` FOREIGN KEY (`Building_name`) REFERENCES `building` (`Building_name`),
   CONSTRAINT `BuildingReviewFK` FOREIGN KEY (`Building_Review_id`) REFERENCES `review` (`Review_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -81,7 +81,7 @@ CREATE TABLE `class` (
   `Code` varchar(45) NOT NULL,
   `Description` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`Code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -115,7 +115,7 @@ CREATE TABLE `class_review` (
   KEY `ClassReviewCodeFK_idx` (`Class_code`),
   CONSTRAINT `ClassReviewCodeFK` FOREIGN KEY (`Class_code`) REFERENCES `class` (`Code`),
   CONSTRAINT `ClassReviewFK` FOREIGN KEY (`Class_review_id`) REFERENCES `review` (`Review_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -140,7 +140,7 @@ CREATE TABLE `club` (
   `Club_description` varchar(150) DEFAULT NULL,
   `Club_location` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`Club_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -170,7 +170,7 @@ CREATE TABLE `club_review` (
   KEY `ClubNameReviewFK_idx` (`Club_Name`),
   CONSTRAINT `ClubNameReviewFK` FOREIGN KEY (`Club_Name`) REFERENCES `club` (`Club_name`),
   CONSTRAINT `ClubReviewFK` FOREIGN KEY (`Club_Review_id`) REFERENCES `review` (`Review_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -195,7 +195,7 @@ CREATE TABLE `department` (
   `D_Description` varchar(100) DEFAULT NULL,
   `D_Name` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`D_Code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -223,7 +223,7 @@ CREATE TABLE `experience` (
   KEY `E_BuildingFK_idx` (`E_Building_name`),
   CONSTRAINT `E_BuildingFK` FOREIGN KEY (`E_Building_name`) REFERENCES `building` (`Building_name`),
   CONSTRAINT `E_BuildingR_FK` FOREIGN KEY (`E_review_id`) REFERENCES `review` (`Review_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -253,7 +253,7 @@ CREATE TABLE `graduate_student` (
   KEY `GDepFK_idx` (`GDep_code`),
   CONSTRAINT `GDepFK` FOREIGN KEY (`GDep_code`) REFERENCES `department` (`D_Code`),
   CONSTRAINT `GradFK` FOREIGN KEY (`SG_id`) REFERENCES `user` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -280,7 +280,7 @@ CREATE TABLE `makes_review` (
   KEY `Review_MadeFK_idx` (`Review_M_id`),
   CONSTRAINT `Review_MadeFK` FOREIGN KEY (`Review_M_id`) REFERENCES `review` (`Review_id`),
   CONSTRAINT `Student_RMFK` FOREIGN KEY (`Stu_R_id`) REFERENCES `user` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -307,7 +307,7 @@ CREATE TABLE `member_of` (
   KEY `ClubMemberFK_idx` (`Club_name`),
   CONSTRAINT `ClubMemberFK` FOREIGN KEY (`Club_name`) REFERENCES `club` (`Club_name`),
   CONSTRAINT `StudentClubID` FOREIGN KEY (`StuClubID`) REFERENCES `user` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -334,7 +334,7 @@ CREATE TABLE `minors_in` (
   KEY `MinorFKS_idx` (`Stu_ID`),
   CONSTRAINT `MinorDep` FOREIGN KEY (`MinD_code`) REFERENCES `department` (`D_Code`),
   CONSTRAINT `MinorFKS` FOREIGN KEY (`Stu_ID`) REFERENCES `user` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -361,7 +361,7 @@ CREATE TABLE `offers` (
   KEY `OfferingCourseFK_idx` (`Class_O_code`) /*!80000 INVISIBLE */,
   CONSTRAINT `DepCodeOfferingFK` FOREIGN KEY (`OffDepCode`) REFERENCES `department` (`D_Code`),
   CONSTRAINT `OfferingCourseFK` FOREIGN KEY (`Class_O_code`) REFERENCES `class` (`Code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -389,7 +389,7 @@ CREATE TABLE `professor` (
   PRIMARY KEY (`Prof_id`),
   KEY `ProfFK_idx` (`Department_code`),
   CONSTRAINT `ProfFK` FOREIGN KEY (`Department_code`) REFERENCES `department` (`D_Code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -415,7 +415,7 @@ CREATE TABLE `review` (
   `Rating` int DEFAULT NULL,
   `Date_made` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`Review_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -441,7 +441,7 @@ CREATE TABLE `ta_classes` (
   PRIMARY KEY (`Class_name`,`TA_ID`),
   KEY `TAClasses_idx` (`TA_ID`),
   CONSTRAINT `TAClasses` FOREIGN KEY (`TA_ID`) REFERENCES `graduate_student` (`SG_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -468,7 +468,7 @@ CREATE TABLE `takes` (
   KEY `CFK_idx` (`Class_code`),
   CONSTRAINT `CFK` FOREIGN KEY (`Class_code`) REFERENCES `class` (`Code`),
   CONSTRAINT `StuFK` FOREIGN KEY (`Stu_id`) REFERENCES `user` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -497,7 +497,7 @@ CREATE TABLE `teaches` (
   KEY `TeachingClassFK_idx` (`Class_T_code`),
   CONSTRAINT `TeachingClassFK` FOREIGN KEY (`Class_T_code`) REFERENCES `class` (`Code`),
   CONSTRAINT `TeachingProfFK` FOREIGN KEY (`Prof_T_id`) REFERENCES `professor` (`Prof_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -528,7 +528,7 @@ CREATE TABLE `undergraduate_student` (
   KEY `MajFK_idx` (`Dep_code`),
   CONSTRAINT `MajFK` FOREIGN KEY (`Dep_code`) REFERENCES `department` (`D_Code`),
   CONSTRAINT `StudentFK` FOREIGN KEY (`S_id`) REFERENCES `user` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -562,7 +562,7 @@ CREATE TABLE `user` (
   `Role` varchar(45) DEFAULT NULL,
   `Univeristy` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
