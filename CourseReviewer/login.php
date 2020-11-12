@@ -30,7 +30,7 @@ if (isset($_POST['uname']) && isset($_POST['password'])){
     }else{
 
         // hashing the password
-        $pass = md5($pass);
+        //$pass = md5($pass);
 
         // Compare inputted uname and pass to Username and Password in coursereviewer database
         $sql = "SELECT * FROM user WHERE Username ='$uname' AND Password ='$pass' ";
