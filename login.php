@@ -31,16 +31,16 @@ if (isset($_POST['uname']) && isset($_POST['password'])){
         $pass = md5($pass);
 
         // Compare inputted uname and pass to Username and Password in coursereviewer database
-        $sql = "SELECT * FROM user WHERE Username ='$uname' AND Pass ='$pass' ";
+        $sql = "SELECT * FROM user WHERE Username ='$uname' AND Password ='$pass' ";
 
         // Performs the $sql query on the connected database in $conn
-        $result = mysqli_query($conn, $sql);
+        $result = mysqli_query($conn, $sql); // Returns row
 
         if (mysqli_num_rows($result) === 1) {
             $row = mysqli_fetch_assoc($result); // $row is an array of user data
             
             // Entered correct username and password
-            if ($row['Username'] === $uname && $row['Pass'] === $pass) {
+            if ($row['Username'] === $uname && $row['Password'] === $pass) {
                 $_SESSION['Username'] = $row['Username'];
                 $_SESSION['First_name'] = $row['First_name'];
                 $_SESSION['Last_name'] = $row['Last_name'];
