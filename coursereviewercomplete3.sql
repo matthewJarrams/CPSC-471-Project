@@ -33,7 +33,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `building_review` WRITE;
 /*!40000 ALTER TABLE `building_review` DISABLE KEYS */;
-INSERT INTO `building_review` VALUES (4,'mac hall','Great','yes');
+INSERT INTO `building_review` VALUES (4,'Mac Hall','Great','yes');
 /*!40000 ALTER TABLE `building_review` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -226,4 +226,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-12 12:57:49
+-- Dump completed on 2020-11-12 13:12:31
