@@ -90,3 +90,10 @@ h1 {
 .ca:hover {
     text-decoration: underline;
 }
+
+.logoutLblPos{
+
+    position:fixed;
+    right:10px;
+    top:5px;
+ }

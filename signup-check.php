@@ -3,7 +3,7 @@
 session_start();
 include "db_conn.php";
 
-// Checks if all fields in signup page are non-empty
+// // Checks to see if there are given fields are in form
 if (isset($_POST['fname']) && isset($_POST['lname']) 
     && isset($_POST['email']) && isset($_POST['role'])
     && isset($_POST['university']) && isset($_POST['uname'])
@@ -80,7 +80,6 @@ if (isset($_POST['fname']) && isset($_POST['lname'])
 
         // Username is avaliable. So insert account info into database
         } else {
-           $today = date("Y-m-d");
            $super_flag = 0;
            $client_flag = 1;
             

@@ -3,19 +3,21 @@
 session_start();
 include "db_conn.php";
 
-// If uname input and password input are non-empty
+// Checks to see if there are 'uname' and 'password' fields in form
 if (isset($_POST['uname']) && isset($_POST['password'])){
+    // Cleanses inputed data in fields
     function validate($data){
         $data = trim($data);
         $data = stripslashes($data);
         $data = htmlspecialchars($data);
         return $data;
-
     }
 
+    // Cleanses inputed data using validate function above
     $uname = validate($_POST['uname']);
     $pass = validate($_POST['password']);
 
+    // If variables are empty
     if (empty($uname)){
         header("Location: index.php?error=User Name is required");
         exit();
@@ -24,7 +26,7 @@ if (isset($_POST['uname']) && isset($_POST['password'])){
         header("Location: index.php?error=Password is required");
         exit();
 
-    // else username and password field have information so now proceed to check if correct
+    // else username and password fields have information so now proceed to check if correct
     }else{
 
         // hashing the password
