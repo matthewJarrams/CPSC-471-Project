@@ -31,13 +31,13 @@ if (isset($_SESSION['ID']) && isset($_SESSION['Username'])) {
         
 
         // Print Header
-        echo  'Code' . "  |  " . 'Would_take_again' . "  |  " . 'Required' . "  |  " .
-                  'Textbook' . "  |  " . 'Work_load' . "  |  " . 'Difficulty' . "  |  " .
+        echo  'Class Code' . "  | " . 'Would take again' . "  |  " . 'Required' . "  |  " .
+                  'Textbook' . "  |  " . 'Work load' . "  |  " . 'Difficulty' . "  |  " .
                   'Semester' . "  |  " . 'Year' ."<br>";
 
         // Print out each entry in given course code
         while($row = mysqli_fetch_assoc($result)) {
-            echo  $row['Code'] . "  |  " . $row['Would_take_again'] . "  |  " . $row['Required'] . "  |  " .
+            echo  $row['Class_code'] . "  |  " . $row['Would_take_again'] . "  |  " . $row['Required'] . "  |  " .
                   $row['Textbook'] . "  |  " . $row['Work_load'] . "  |  " . $row['Difficulty'] . "  |  " .
                   $row['Semester'] . "  |  " . $row['Year'] ."<br>";
             
