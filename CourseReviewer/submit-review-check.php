@@ -76,7 +76,7 @@ if (isset($_POST['code']) && isset($_POST['wouldTakeAgain'])
         } else {
             
             // sql query to insert review into database
-            $sql2 = "INSERT INTO class_review(Code, Would_take_again, Required, Textbook, Work_load,
+            $sql2 = "INSERT INTO class_review(Class_code, Would_take_again, Required, Textbook, Work_load,
              Difficulty, Semester, Year) 
              VALUES('$code', '$wouldTakeAgain', '$isRequired', '$textbook', '$workload', '$difficulty',
               '$semester', '$year')";

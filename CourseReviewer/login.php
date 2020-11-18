@@ -47,7 +47,7 @@ if (isset($_POST['uname']) && isset($_POST['password'])){
                 $_SESSION['First_name'] = $row['First_name'];
                 $_SESSION['Last_name'] = $row['Last_name'];
                 $_SESSION['ID'] = $row['ID'];
-                header("Location: home.php");
+                header("Location: mainScreen.php");
                 exit();
 
             } else{
