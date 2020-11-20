@@ -37,6 +37,7 @@ if (isset($_SESSION['ID']) && isset($_SESSION['Username'])) {
     $result = mysqli_query($conn, $sql);
     $resultCheck = mysqli_num_rows($result);
 	
+
     // There does exist users in the database
     if ($resultCheck > 0) {
         
@@ -45,6 +46,7 @@ if (isset($_SESSION['ID']) && isset($_SESSION['Username'])) {
 
         // Print out each entry in given course code
         while($row = mysqli_fetch_assoc($result)) {
+			
 			echo "<tables>";
 			echo "<TR>";
 			echo "<TD>".$row['Club_name'] ."</TD>";

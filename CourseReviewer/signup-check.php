@@ -80,17 +80,21 @@ if (isset($_POST['fname']) && isset($_POST['lname'])
 
         // Username is avaliable. So insert account info into database
         } else {
-           $today = "2020-11-12";
+		   $currentDateTime = date('Y-m-d');
            $super_flag = 0;
            $client_flag = 1;
-           $ID = 4; 
+		   $sqlmax = "select max(ID) + 1 from user";
+		   $resultmax = mysqli_query($conn, $sqlmax);
+		   $rowmax = mysqli_fetch_assoc($resultmax);
+		   $ID = $rowmax['max(ID) + 1']; 
+
            $permission = "none";
             
             // sql query to insert account info into database
 
             $sql2 = "INSERT INTO user(ID, First_name, Last_name, Date_made, Username,
             Password, Super_flag, Permissions, Client_flag, email_address, Role, Univeristy) 
-            VALUES ('$ID','$fname','$lname','$today','$uname',
+            VALUES ('$ID','$fname','$lname','$currentDateTime','$uname',
             '$password','$super_flag','$permission','$client_flag','$email','$role', '$university')" ;
                         
             $result2 = mysqli_query($conn, $sql2);
