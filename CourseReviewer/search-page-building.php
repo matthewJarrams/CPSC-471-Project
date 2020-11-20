@@ -19,10 +19,11 @@ if (isset($_SESSION['ID']) && isset($_SESSION['Username'])) {
 <body>
 <TABLE  BORDER="5">
    <TR>
-      <TH COLSPAN="8">
+      <TH COLSPAN="9">
          <H3><BR>Reviews</H3>
       </TH>
    </TR>
+      <TH>Username</TH>
       <TH>Building Name</TH>
       <TH>Type</TH>
 	  <TH>Accessibility</TH>
@@ -52,7 +53,7 @@ if (isset($_SESSION['ID']) && isset($_SESSION['Username'])) {
 		// There does exist users in the database
 		if ($resultCheck > 0) {
 			
-			$sql5 = "SELECT * FROM `building`, `experience`, `building_review`, `review` WHERE '$query' = building.Building_name AND building.Building_name = building_review.Building_name AND building_review.Building_Review_id = review.Review_id AND review.Review_id = experience.E_review_id AND experience.E_Building_name = building.Building_name";
+			$sql5 = "SELECT * FROM `user`, `makes_review`, `building`, `experience`, `building_review`, `review` WHERE '$query' = building.Building_name AND building.Building_name = building_review.Building_name AND building_review.Building_Review_id = review.Review_id AND review.Review_id = experience.E_review_id AND experience.E_Building_name = building.Building_name AND makes_review.Review_M_id = review.Review_id AND user.ID = makes_review.Stu_R_id";
 			$result5 = mysqli_query($conn, $sql5);
 			$resultCheck4 = mysqli_num_rows($result5);
 
@@ -60,8 +61,9 @@ if (isset($_SESSION['ID']) && isset($_SESSION['Username'])) {
 			while($row = mysqli_fetch_assoc($result5)) {
 				echo "<tables>";
 				echo "<TR>";
+				echo "<TD>".$row['Username']. "</TD>";
 				echo "<TD>".$row['Building_name']. "</TD>";
-				echo "<TD>" .$row['Type']."</TD>";
+				echo "<TD>".$row['Type']."</TD>";
 				echo "<TD>".$row['Accessibility']."</TD>";
 				echo "<TD>".$row['Is_Crowded']."</TD>";
 				echo "<TD>".$row['Experience']."</TD>";

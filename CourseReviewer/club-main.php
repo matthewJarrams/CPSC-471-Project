@@ -4,7 +4,7 @@ include "db_conn.php";
 
 
 if (isset($_SESSION['ID']) && isset($_SESSION['Username'])) {
-
+	
 
 
 ?>
@@ -15,7 +15,6 @@ if (isset($_SESSION['ID']) && isset($_SESSION['Username'])) {
     <title>HomePage</title>
 	<link rel = "stylesheet" type = "text/css" href = "style.css">
 </head>
-
 <body>
 	
 	<form action="view-clubs.php" method="post">   

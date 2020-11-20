@@ -19,10 +19,11 @@ if (isset($_SESSION['ID']) && isset($_SESSION['Username'])) {
 <body>
 <TABLE  BORDER="5">
    <TR>
-      <TH COLSPAN="11">
+      <TH COLSPAN="12">
          <H3><BR>Reviews</H3>
       </TH>
    </TR>
+	  <TH>Username</TH>
       <TH>Class Code</TH>
       <TH>Would_take_again</TH>
 	  <TH>Required</TH>
@@ -55,18 +56,15 @@ if (isset($_SESSION['ID']) && isset($_SESSION['Username'])) {
 		// There does exist users in the database
 		if ($resultCheck > 0) {
 			
-			$sql2 = "SELECT * FROM `class`, `class_review`, `review` WHERE '$query' = class.Code AND class.Code = class_review.Class_code AND class_review.Class_review_id = review.Review_id";
+			$sql2 = "SELECT * FROM `user`, `makes_review`, `class`, `class_review`, `review` WHERE '$query' = class.Code AND class.Code = class_review.Class_code AND class_review.Class_review_id = review.Review_id AND makes_review.Review_M_id = review.Review_id AND user.ID = makes_review.Stu_R_id";
 			$result2 = mysqli_query($conn, $sql2);
 			$resultCheck3 = mysqli_num_rows($result2);
-				 // Print Header
-			echo  'Class Code' . "  | " . 'Would take again' . "  |  " . 'Required' . "  |  " .
-					  'Textbook' . "  |  " . 'Work load' . "  |  " . 'Difficulty' . "  |  " .
-					  'Semester' . "  |  " . 'Year' ."<br>";
-
+		
 			// Print out each entry in given course code
 			while($row = mysqli_fetch_assoc($result2)) {
 				echo "<tables>";
 				echo "<TR>";
+				echo "<TD>" .$row['Username']. "</TD>";
 				echo "<TD>".$row['Code']. "</TD>";
 				echo "<TD>".$row['Would_take_again']."</TD>";
 				echo "<TD>".$row['Required']."</TD>";

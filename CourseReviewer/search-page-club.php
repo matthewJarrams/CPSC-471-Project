@@ -19,10 +19,11 @@ if (isset($_SESSION['ID']) && isset($_SESSION['Username'])) {
 <body>
 <TABLE  BORDER="5">
    <TR>
-      <TH COLSPAN="8">
+      <TH COLSPAN="9">
          <H3><BR>Reviews</H3>
       </TH>
    </TR>
+	  <TH>Username</TH>
       <TH>Club Name</TH>
       <TH>Club Location</TH>
 	  <TH>Academic</TH>
@@ -45,14 +46,13 @@ if (isset($_SESSION['ID']) && isset($_SESSION['Username'])) {
 		
 		//$query = mysql_real_escape_string($query);
 		// makes sure nobody uses SQL injection
-		
 		$sql = "SELECT * FROM club WHERE '$query' = Club_name";
 		$result = mysqli_query($conn, $sql);
 		$resultCheck = mysqli_num_rows($result);
 		// There does exist users in the database
 		if ($resultCheck > 0) {
 			
-			$sql4 = "SELECT * FROM `club`, `club_review`, `review` WHERE '$query' = club.Club_name AND club.Club_name = club_review.Club_Name AND club_review.Club_Review_id = review.Review_id";
+			$sql4 = "SELECT * FROM `user`, `club`, `club_review`, `review`, `makes_review` WHERE 'Chess' = club.Club_name AND club.Club_name = club_review.Club_Name AND club_review.Club_Review_id = review.Review_id AND makes_review.Review_M_id = review.Review_id AND user.ID = makes_review.Stu_R_id";
 			$result4 = mysqli_query($conn, $sql4);
 			$resultCheck4 = mysqli_num_rows($result4);
 
@@ -60,6 +60,7 @@ if (isset($_SESSION['ID']) && isset($_SESSION['Username'])) {
 			while($row = mysqli_fetch_assoc($result4)) {
 				echo "<tables>";
 				echo "<TR>";
+				echo "<TD>".$row['Username']. "</TD>";
 				echo "<TD>".$row['Club_name']. "</TD>";
 				echo "<TD>".$row['Club_location']."</TD>";
 				echo "<TD>".$row['Academic']."</TD>";

@@ -80,7 +80,7 @@ if (isset($_POST['fname']) && isset($_POST['lname'])
 
         // Username is avaliable. So insert account info into database
         } else {
-            $today = "2020-11-12";
+           $today = "2020-11-12";
            $super_flag = 0;
            $client_flag = 1;
            $ID = 4; 
@@ -89,7 +89,7 @@ if (isset($_POST['fname']) && isset($_POST['lname'])
             // sql query to insert account info into database
 
             $sql2 = "INSERT INTO user(ID, First_name, Last_name, Date_made, Username,
-            Password, Super_flag, Permission, Client_flag, email_address, Role, Univeristy) 
+            Password, Super_flag, Permissions, Client_flag, email_address, Role, Univeristy) 
             VALUES ('$ID','$fname','$lname','$today','$uname',
             '$password','$super_flag','$permission','$client_flag','$email','$role', '$university')" ;
                         
