@@ -20,7 +20,7 @@ if (isset($_SESSION['ID']) && isset($_SESSION['Username'])) {
 	
 	<form action="class-main.php" method="post">   
 
-		<button type="Class">Class </button>
+		<button type="Class"> Class </button>
         <a href="logout.php" class = "logoutLblPos">Logout</a>
 
     </form>
