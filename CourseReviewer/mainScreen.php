@@ -25,14 +25,14 @@ if (isset($_SESSION['ID']) && isset($_SESSION['Username'])) {
 
     </form>
 	
-	<form action="class-main.php" method="post">   
+	<form action="building-main.php" method="post">   
         
        	<button type="Building"> Building </button>
         <a href="logout.php" class = "logoutLblPos">Logout</a>
 
     </form>
 	
-	<form action="class-main.php" method="post">   
+	<form action="club-main.php" method="post">   
         
        	<button type="Club"> Club </button>
         <a href="logout.php" class = "logoutLblPos">Logout</a>

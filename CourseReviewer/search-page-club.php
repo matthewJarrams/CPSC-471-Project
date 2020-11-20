@@ -19,18 +19,15 @@ if (isset($_SESSION['ID']) && isset($_SESSION['Username'])) {
 <body>
 <TABLE  BORDER="5">
    <TR>
-      <TH COLSPAN="11">
+      <TH COLSPAN="8">
          <H3><BR>Reviews</H3>
       </TH>
    </TR>
-      <TH>Class Code</TH>
-      <TH>Would_take_again</TH>
-	  <TH>Required</TH>
-	  <TH>Textbook</TH>
-	  <TH>Work Load</TH>
-	  <TH>Difficulty</TH>
-	  <TH>Semester</TH>
-	  <TH>Year</TH>
+      <TH>Club Name</TH>
+      <TH>Club Location</TH>
+	  <TH>Academic</TH>
+	  <TH>Cost</TH>
+	  <TH>Leisure</TH>
 	  <TH>Review</TH>
 	  <TH>Rating</TH>
 	  <TH>Date Made</TH>
@@ -49,32 +46,25 @@ if (isset($_SESSION['ID']) && isset($_SESSION['Username'])) {
 		//$query = mysql_real_escape_string($query);
 		// makes sure nobody uses SQL injection
 		
-		$sql = "SELECT * FROM class WHERE '$query' = Code";
+		$sql = "SELECT * FROM club WHERE '$query' = Club_name";
 		$result = mysqli_query($conn, $sql);
 		$resultCheck = mysqli_num_rows($result);
 		// There does exist users in the database
 		if ($resultCheck > 0) {
 			
-			$sql2 = "SELECT * FROM `class`, `class_review`, `review` WHERE '$query' = class.Code AND class.Code = class_review.Class_code AND class_review.Class_review_id = review.Review_id";
-			$result2 = mysqli_query($conn, $sql2);
-			$resultCheck3 = mysqli_num_rows($result2);
-				 // Print Header
-			echo  'Class Code' . "  | " . 'Would take again' . "  |  " . 'Required' . "  |  " .
-					  'Textbook' . "  |  " . 'Work load' . "  |  " . 'Difficulty' . "  |  " .
-					  'Semester' . "  |  " . 'Year' ."<br>";
+			$sql4 = "SELECT * FROM `club`, `club_review`, `review` WHERE '$query' = club.Club_name AND club.Club_name = club_review.Club_Name AND club_review.Club_Review_id = review.Review_id";
+			$result4 = mysqli_query($conn, $sql4);
+			$resultCheck4 = mysqli_num_rows($result4);
 
 			// Print out each entry in given course code
-			while($row = mysqli_fetch_assoc($result2)) {
+			while($row = mysqli_fetch_assoc($result4)) {
 				echo "<tables>";
 				echo "<TR>";
-				echo "<TD>".$row['Code']. "</TD>";
-				echo "<TD>".$row['Would_take_again']."</TD>";
-				echo "<TD>".$row['Required']."</TD>";
-				echo "<TD>".$row['Textbook']."</TD>";
-				echo "<TD>".$row['Work_load']."</TD>";
-				echo "<TD>".$row['Difficulty']."</TD>";
-				echo "<TD>".$row['Semester']."</TD>";
-				echo "<TD>".$row['Year']."</TD>";
+				echo "<TD>".$row['Club_name']. "</TD>";
+				echo "<TD>".$row['Club_location']."</TD>";
+				echo "<TD>".$row['Academic']."</TD>";
+				echo "<TD>".$row['Cost']."</TD>";
+				echo "<TD>".$row['Leisure']."</TD>";
 				echo "<TD>".$row['Description_review']."</TD>";
 				echo "<TD>".$row['Rating']."</TD>";
 				echo "<TD>".$row['Date_made']."</TD>";

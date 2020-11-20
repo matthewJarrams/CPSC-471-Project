@@ -19,18 +19,15 @@ if (isset($_SESSION['ID']) && isset($_SESSION['Username'])) {
 <body>
 <TABLE  BORDER="5">
    <TR>
-      <TH COLSPAN="11">
+      <TH COLSPAN="8">
          <H3><BR>Reviews</H3>
       </TH>
    </TR>
-      <TH>Class Code</TH>
-      <TH>Would_take_again</TH>
-	  <TH>Required</TH>
-	  <TH>Textbook</TH>
-	  <TH>Work Load</TH>
-	  <TH>Difficulty</TH>
-	  <TH>Semester</TH>
-	  <TH>Year</TH>
+      <TH>Building Name</TH>
+      <TH>Type</TH>
+	  <TH>Accessibility</TH>
+	  <TH>Is_Crowded</TH>
+	  <TH>Expierience</TH>
 	  <TH>Review</TH>
 	  <TH>Rating</TH>
 	  <TH>Date Made</TH>
@@ -49,32 +46,25 @@ if (isset($_SESSION['ID']) && isset($_SESSION['Username'])) {
 		//$query = mysql_real_escape_string($query);
 		// makes sure nobody uses SQL injection
 		
-		$sql = "SELECT * FROM class WHERE '$query' = Code";
+		$sql = "SELECT * FROM Building WHERE '$query' = Building_name";
 		$result = mysqli_query($conn, $sql);
 		$resultCheck = mysqli_num_rows($result);
 		// There does exist users in the database
 		if ($resultCheck > 0) {
 			
-			$sql2 = "SELECT * FROM `class`, `class_review`, `review` WHERE '$query' = class.Code AND class.Code = class_review.Class_code AND class_review.Class_review_id = review.Review_id";
-			$result2 = mysqli_query($conn, $sql2);
-			$resultCheck3 = mysqli_num_rows($result2);
-				 // Print Header
-			echo  'Class Code' . "  | " . 'Would take again' . "  |  " . 'Required' . "  |  " .
-					  'Textbook' . "  |  " . 'Work load' . "  |  " . 'Difficulty' . "  |  " .
-					  'Semester' . "  |  " . 'Year' ."<br>";
+			$sql5 = "SELECT * FROM `building`, `experience`, `building_review`, `review` WHERE '$query' = building.Building_name AND building.Building_name = building_review.Building_name AND building_review.Building_Review_id = review.Review_id AND review.Review_id = experience.E_review_id AND experience.E_Building_name = building.Building_name";
+			$result5 = mysqli_query($conn, $sql5);
+			$resultCheck4 = mysqli_num_rows($result5);
 
 			// Print out each entry in given course code
-			while($row = mysqli_fetch_assoc($result2)) {
+			while($row = mysqli_fetch_assoc($result5)) {
 				echo "<tables>";
 				echo "<TR>";
-				echo "<TD>".$row['Code']. "</TD>";
-				echo "<TD>".$row['Would_take_again']."</TD>";
-				echo "<TD>".$row['Required']."</TD>";
-				echo "<TD>".$row['Textbook']."</TD>";
-				echo "<TD>".$row['Work_load']."</TD>";
-				echo "<TD>".$row['Difficulty']."</TD>";
-				echo "<TD>".$row['Semester']."</TD>";
-				echo "<TD>".$row['Year']."</TD>";
+				echo "<TD>".$row['Building_name']. "</TD>";
+				echo "<TD>" .$row['Type']."</TD>";
+				echo "<TD>".$row['Accessibility']."</TD>";
+				echo "<TD>".$row['Is_Crowded']."</TD>";
+				echo "<TD>".$row['Experience']."</TD>";
 				echo "<TD>".$row['Description_review']."</TD>";
 				echo "<TD>".$row['Rating']."</TD>";
 				echo "<TD>".$row['Date_made']."</TD>";

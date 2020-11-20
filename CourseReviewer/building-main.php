@@ -18,23 +18,23 @@ if (isset($_SESSION['ID']) && isset($_SESSION['Username'])) {
 
 <body>
 	
-	<form action="view-classes.php" method="post">   
+	<form action="view-buildings.php" method="post">   
 
-		<button type="Class"> View Classes </button>
+		<button type="Class"> View Buildings </button>
         <a href="logout.php" class = "logoutLblPos">Logout</a>
 
     </form>
 	
-	<form action="search-index.php" method="post">   
+	<form action="search-index-building.php" method="post">   
         
-       	<button type="Building"> Search Classes </button>
+       	<button type="Building"> Search Buildings </button>
         <a href="logout.php" class = "logoutLblPos">Logout</a>
 
     </form>
 	
 	<form action="home.php" method="post">   
         
-       	<button type="Club"> Add Class </button>
+       	<button type="Club"> Add Building </button>
         <a href="logout.php" class = "logoutLblPos">Logout</a>
 
     </form>
