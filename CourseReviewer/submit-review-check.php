@@ -75,12 +75,24 @@ if (isset($_POST['code']) && isset($_POST['wouldTakeAgain'])
 			$resultUID = mysqli_query($conn, $SqlUID);
 			$rowUID = mysqli_fetch_assoc($resultUID);
 			$UID = $rowUID['ID'];
+			
+			  // Check if course code is correct
+        
+        $sql = "SELECT * FROM class WHERE Code ='$code'";
+        // Performs the $sql query on the connected database in $conn
+        $result = mysqli_query($conn, $sql);
+
+        // Code is not correct
+        if (mysqli_num_rows($result) ===  0) {
+            header("Location: submit-class-review.php?error=Inccorrect course code.&$review_data");
+            exit();
+		
             //if (mysqli_num_rows($rowUID) == 0) {
             //header("Location: submit-class-review.php?error=This is not your username");
             //exit();
 
         //Username is correct
-        //} else {
+        } else {
             // sql query to insert review into database
 			$currentDateTime = date('Y-m-d');
 			
@@ -100,7 +112,7 @@ if (isset($_POST['code']) && isset($_POST['wouldTakeAgain'])
 
             if($result3)
 			{
-                header("Location: submit-class-review.php?success=Course review successfully added.");
+                header("Location: class-main.php?success=Course review successfully added.");
                 exit();
 
             } else {
@@ -112,6 +124,7 @@ if (isset($_POST['code']) && isset($_POST['wouldTakeAgain'])
             
 
         }
+	}
 
     
 
