@@ -32,7 +32,7 @@ if (isset($_SESSION['ID']) && isset($_SESSION['Username'])) {
 
     </form>
 	
-	<form action="home.php" method="post">   
+	<form action="add-building.php" method="post">   
         
        	<button type="Club"> Add Building </button>
         <a href="logout.php" class = "logoutLblPos">Logout</a>

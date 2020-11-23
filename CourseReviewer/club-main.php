@@ -31,13 +31,13 @@ if (isset($_SESSION['ID']) && isset($_SESSION['Username'])) {
 
     </form>
 	
-	<form action="home.php" method="post">   
+	<form action="add-club.php" method="post">   
         
        	<button type="Club"> Add Club </button>
         <a href="logout.php" class = "logoutLblPos">Logout</a>
 
     </form>
-	<form action="home.php" method="post">   
+	<form action="submit-class-review.php" method="post">   
         
        	<button type="Club"> Make Review </button>
         <a href="logout.php" class = "logoutLblPos">Logout</a>
