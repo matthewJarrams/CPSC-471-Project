@@ -115,8 +115,18 @@
         $this->Role                  = htmlspecialchars(strip_tags($this->Role));
         $this->Univeristy            = htmlspecialchars(strip_tags($this->Univeristy));
 
-        //Auto increment variables
-        $this->ID = 17; 
+        //Auto increment ID
+        $sqlmax = "select max(ID) + 1 from user";
+        $sqlmaxstmt = $this->conn->prepare($sqlmax);
+        //binding param
+        $sqlmaxstmt->bindParam(1, $this->ID);
+        //execute the query
+        $sqlmaxstmt->execute();
+        $rowmax = $sqlmaxstmt->fetch(PDO::FETCH_ASSOC);
+		$this->ID = $rowmax['max(ID) + 1']; 
+        
+
+        //Default values
         $this->Super_flag = 0;
         $this->Client_flag = 1;
         $this->Permissions = "none";
