@@ -156,6 +156,56 @@
         return false;
     }
 
+    //Updates user info
+    public function update(){
+        //create query
+        $query = 'UPDATE ' . $this->table .
+        ' SET First_name = :First_name, Last_name = :Last_name, 
+        Password = :Password, email_address = :email_address, 
+        Univeristy = :Univeristy 
+        WHERE ID = :ID';
+
+        //prepare statement
+        $stmt = $this->conn->prepare($query);
+        //clean data
+        $this->ID                    = htmlspecialchars(strip_tags($this->ID));
+        $this->First_name            = htmlspecialchars(strip_tags($this->First_name));
+        $this->Last_name             = htmlspecialchars(strip_tags($this->Last_name));
+        //$this->Date_made             = htmlspecialchars(strip_tags($this->Date_made));
+        //$this->Username              = htmlspecialchars(strip_tags($this->Username));
+        $this->Password              = htmlspecialchars(strip_tags($this->Password));
+        //$this->Super_flag            = htmlspecialchars(strip_tags($this->Super_flag));
+        //$this->Permissions           = htmlspecialchars(strip_tags($this->Permissions));
+        //$this->Client_flag           = htmlspecialchars(strip_tags($this->Client_flag));
+        $this->email_address         = htmlspecialchars(strip_tags($this->email_address));
+        //$this->Role                  = htmlspecialchars(strip_tags($this->Role));
+        $this->Univeristy            = htmlspecialchars(strip_tags($this->Univeristy));
+
+        
+        //binding of parameters
+        $stmt->bindParam(':ID', $this->ID);
+        $stmt->bindParam(':First_name', $this->First_name);
+        $stmt->bindParam(':Last_name', $this->Last_name);
+        //$stmt->bindParam(':Date_made', $this->Date_made);
+        //$stmt->bindParam(':Username', $this->Username);
+        $stmt->bindParam(':Password', $this->Password);
+        //$stmt->bindParam(':Super_flag', $this->Super_flag);
+        //$stmt->bindParam(':Permissions', $this->Permissions);
+        //$stmt->bindParam(':Client_flag', $this->Client_flag);
+        $stmt->bindParam(':email_address', $this->email_address);
+        //$stmt->bindParam(':Role', $this->Role);
+        $stmt->bindParam(':Univeristy', $this->Univeristy);
+
+        //execute the query
+        if($stmt->execute()){
+            return true;
+        }
+        
+        //print error if something goes wrong
+        printf("Error %s. \n", $stmt->error);
+        return false;
+    }
+
 
 
 
