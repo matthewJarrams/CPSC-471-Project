@@ -63,6 +63,8 @@ if (isset($_SESSION['ID']) && isset($_SESSION['Username'])) {
 
 
     <a href="logout.php" class = "logoutLblPos">Logout</a>
+	<a href="mainScreen.php" class = "homeLblPos">Home Screen</a>
+
 
 </body>
 
