@@ -23,7 +23,7 @@ $post_arr = array(
     'Username' => $post->Username,
     'email_address' => $post->email_address,
     'Role' => $post->Role,
-    'Univeristy' => $post->Univeristy
+    'University' => $post->University
 );
 
 
