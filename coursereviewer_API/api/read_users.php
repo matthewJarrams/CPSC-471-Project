@@ -30,7 +30,7 @@ if($num > 0){
             'Username' => $Username,
             'email_address' => $email_address,
             'Role' => $Role,
-            'Univeristy' => $Univeristy
+            'University' => $University
         );
         array_push($post_arr['data'], $post_item);
     }

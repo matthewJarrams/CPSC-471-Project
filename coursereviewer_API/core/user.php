@@ -18,7 +18,7 @@
         public $Client_flag;
         public $email_address;
         public $Role;
-        public $Univeristy;
+        public $University;
 
         //constructor with db connection
 
@@ -37,7 +37,7 @@
                 Username,
                 email_address,
                 Role,
-                Univeristy
+                University
                 FROM
                 ' .$this->table;
 
@@ -62,7 +62,7 @@
                 Username,
                 email_address,
                 Role,
-                Univeristy
+                University
                 FROM
                 ' .$this->table. 
                 ' WHERE ID = ? LIMIT 1';
@@ -83,7 +83,7 @@
         $this->Username = $row['Username'];
         $this->email_address = $row['email_address'];
         $this->Role = $row['Role'];
-        $this->Univeristy = $row['Univeristy'];
+        $this->University = $row['University'];
 
 
         return $stmt;
@@ -97,7 +97,7 @@
         ' SET ID = :ID, First_name = :First_name, Last_name = :Last_name, Date_made = :Date_made, 
          Username = :Username, Password = :Password, Super_flag = :Super_flag, 
          Permissions = :Permissions, Client_flag = :Client_flag, 
-         email_address = :email_address, Role = :Role, Univeristy = :Univeristy';
+         email_address = :email_address, Role = :Role, University = :University';
 
         //prepare statement
         $stmt = $this->conn->prepare($query);
@@ -113,7 +113,7 @@
         $this->Client_flag           = htmlspecialchars(strip_tags($this->Client_flag));
         $this->email_address         = htmlspecialchars(strip_tags($this->email_address));
         $this->Role                  = htmlspecialchars(strip_tags($this->Role));
-        $this->Univeristy            = htmlspecialchars(strip_tags($this->Univeristy));
+        $this->University            = htmlspecialchars(strip_tags($this->University));
 
         //Auto increment ID
         $sqlmax = "select max(ID) + 1 from user";
@@ -144,7 +144,7 @@
         $stmt->bindParam(':Client_flag', $this->Client_flag);
         $stmt->bindParam(':email_address', $this->email_address);
         $stmt->bindParam(':Role', $this->Role);
-        $stmt->bindParam(':Univeristy', $this->Univeristy);
+        $stmt->bindParam(':University', $this->University);
 
         //execute the query
         if($stmt->execute()){
@@ -162,7 +162,7 @@
         $query = 'UPDATE ' . $this->table .
         ' SET First_name = :First_name, Last_name = :Last_name, 
         Password = :Password, email_address = :email_address, 
-        Univeristy = :Univeristy 
+        University = :University 
         WHERE ID = :ID';
 
         //prepare statement
@@ -179,7 +179,7 @@
         //$this->Client_flag           = htmlspecialchars(strip_tags($this->Client_flag));
         $this->email_address         = htmlspecialchars(strip_tags($this->email_address));
         //$this->Role                  = htmlspecialchars(strip_tags($this->Role));
-        $this->Univeristy            = htmlspecialchars(strip_tags($this->Univeristy));
+        $this->University            = htmlspecialchars(strip_tags($this->University));
 
         
         //binding of parameters
@@ -194,7 +194,7 @@
         //$stmt->bindParam(':Client_flag', $this->Client_flag);
         $stmt->bindParam(':email_address', $this->email_address);
         //$stmt->bindParam(':Role', $this->Role);
-        $stmt->bindParam(':Univeristy', $this->Univeristy);
+        $stmt->bindParam(':University', $this->University);
 
         //execute the query
         if($stmt->execute()){

@@ -25,7 +25,7 @@ $post->Password = $data->Password;
 //$post->Client_flag = $data->Client_flag;
 $post->email_address = $data->email_address;
 $post->Role = $data->Role;
-$post->Univeristy = $data->Univeristy;
+$post->University = $data->University;
 
 //create post
 if($post->create()){
