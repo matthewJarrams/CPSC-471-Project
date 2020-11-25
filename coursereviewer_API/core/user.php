@@ -206,6 +206,28 @@
         return false;
     }
 
+    //deletes user
+    public function delete(){
+        //create query
+        $query = 'DELETE FROM ' . $this->table . ' WHERE ID = :ID';
+        //prepare statement
+        $stmt = $this->conn->prepare($query);
+        //clean the data
+        $this->ID            = htmlspecialchars(strip_tags($this->ID));
+        $stmt->bindParam(':ID', $this->ID);
+
+        //execute the query
+        if($stmt->execute()){
+            return true;
+        }
+        
+        //print error if something goes wrong
+        printf("Error %s. \n", $stmt->error);
+        return false;
+
+    }
+
+
 
 
 
