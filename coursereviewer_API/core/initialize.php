@@ -12,6 +12,7 @@
 
     //core classes
     require_once(CORE_PATH.DS."user.php");
+    require_once(CORE_PATH.DS."department.php");
     
 
 
