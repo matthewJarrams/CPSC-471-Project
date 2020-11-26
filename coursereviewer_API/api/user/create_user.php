@@ -6,7 +6,7 @@ header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested-With ');
 
 //initializing our api
-include_once('../core/initialize.php');
+include_once('../../core/initialize.php');
 
 //instantiate post
 $post = new User($db);
