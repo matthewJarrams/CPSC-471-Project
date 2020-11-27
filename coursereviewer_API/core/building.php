@@ -6,7 +6,7 @@
         private $conn;
         private $table = 'building';
 
-        //user attributes
+        //building attributes
         public $Building_name;
         public $Type;
 
