@@ -6,10 +6,27 @@
         private $conn;
         private $table = 'department';
 
-        //user attributes
+        //Department attributes
         public $D_Code;
         public $D_Description;
         public $D_Name;
+
+        //Professor attributes
+        public $Prof_id;
+        public $Department_code;
+        public $First_name;
+        public $Last_name;
+
+        //Offers table attributes
+        public $OffDepCode;
+        public $Class_O_code;
+
+        //Teaches table attributes
+        public $Prof_T_id;
+        public $Class_T_code;
+        public $Year;
+        public $Semester;
+
 
         //constructor with db connection
 
@@ -96,47 +113,36 @@
         return false;
     }
 
-     /*
-
-    //Updates user info
-    public function update(){
+    // adds professor
+    public function addProfessor(){
         //create query
-        $query = 'UPDATE ' . $this->table .
-        ' SET First_name = :First_name, Last_name = :Last_name, 
-        Password = :Password, email_address = :email_address, 
-        University = :University 
-        WHERE ID = :ID';
+        $query = 'INSERT INTO ' . "professor" .
+        ' SET Prof_id = :Prof_id, Department_code = :Department_code, First_name = :First_name, 
+        Last_name = :Last_name';
 
         //prepare statement
         $stmt = $this->conn->prepare($query);
         //clean data
-        $this->ID                    = htmlspecialchars(strip_tags($this->ID));
+        $this->Prof_id               = htmlspecialchars(strip_tags($this->Prof_id));
+        $this->Department_code       = htmlspecialchars(strip_tags($this->Department_code));
         $this->First_name            = htmlspecialchars(strip_tags($this->First_name));
         $this->Last_name             = htmlspecialchars(strip_tags($this->Last_name));
-        //$this->Date_made             = htmlspecialchars(strip_tags($this->Date_made));
-        //$this->Username              = htmlspecialchars(strip_tags($this->Username));
-        $this->Password              = htmlspecialchars(strip_tags($this->Password));
-        //$this->Super_flag            = htmlspecialchars(strip_tags($this->Super_flag));
-        //$this->Permissions           = htmlspecialchars(strip_tags($this->Permissions));
-        //$this->Client_flag           = htmlspecialchars(strip_tags($this->Client_flag));
-        $this->email_address         = htmlspecialchars(strip_tags($this->email_address));
-        //$this->Role                  = htmlspecialchars(strip_tags($this->Role));
-        $this->University            = htmlspecialchars(strip_tags($this->University));
 
-        
+        //Auto increment Prof_id
+        $sqlmax = "select max(Prof_id) + 1 from professor";
+        $sqlmaxstmt = $this->conn->prepare($sqlmax);
+        //binding param
+        $sqlmaxstmt->bindParam(1, $this->Prof_id);
+        //execute the query
+        $sqlmaxstmt->execute();
+        $rowmax = $sqlmaxstmt->fetch(PDO::FETCH_ASSOC);
+		$this->Prof_id = $rowmax['max(Prof_id) + 1']; 
+
         //binding of parameters
-        $stmt->bindParam(':ID', $this->ID);
+        $stmt->bindParam(':Prof_id', $this->Prof_id);
+        $stmt->bindParam(':Department_code', $this->Department_code);
         $stmt->bindParam(':First_name', $this->First_name);
         $stmt->bindParam(':Last_name', $this->Last_name);
-        //$stmt->bindParam(':Date_made', $this->Date_made);
-        //$stmt->bindParam(':Username', $this->Username);
-        $stmt->bindParam(':Password', $this->Password);
-        //$stmt->bindParam(':Super_flag', $this->Super_flag);
-        //$stmt->bindParam(':Permissions', $this->Permissions);
-        //$stmt->bindParam(':Client_flag', $this->Client_flag);
-        $stmt->bindParam(':email_address', $this->email_address);
-        //$stmt->bindParam(':Role', $this->Role);
-        $stmt->bindParam(':University', $this->University);
 
         //execute the query
         if($stmt->execute()){
@@ -148,15 +154,21 @@
         return false;
     }
 
-    //deletes user
-    public function delete(){
+    // adds offered class
+    public function addOfferedClass(){
         //create query
-        $query = 'DELETE FROM ' . $this->table . ' WHERE ID = :ID';
+        $query = 'INSERT INTO ' . "offers" .
+        ' SET OffDepCode = :OffDepCode, Class_O_code = :Class_O_code';
+
         //prepare statement
         $stmt = $this->conn->prepare($query);
-        //clean the data
-        $this->ID            = htmlspecialchars(strip_tags($this->ID));
-        $stmt->bindParam(':ID', $this->ID);
+        //clean data
+        $this->OffDepCode               = htmlspecialchars(strip_tags($this->OffDepCode));
+        $this->Class_O_code             = htmlspecialchars(strip_tags($this->Class_O_code));
+
+        //binding of parameters
+        $stmt->bindParam(':OffDepCode', $this->OffDepCode);
+        $stmt->bindParam(':Class_O_code', $this->Class_O_code);
 
         //execute the query
         if($stmt->execute()){
@@ -166,15 +178,54 @@
         //print error if something goes wrong
         printf("Error %s. \n", $stmt->error);
         return false;
+    }
+
+    //Views department classes
+    public function view_department_classes(){
+        //create query
+        $query = 'SELECT Class_O_code FROM offers WHERE OffDepCode = ?';
+
+        //prepare satement
+        $stmt = $this->conn->prepare($query);
+        //binding param
+        $stmt->bindParam(1, $this->OffDepCode);
+        //execute the query
+        $stmt->execute();
+
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $this->Class_O_code = $row['Class_O_code'];
+       
+
+        return $stmt;
 
     }
-    
-    */
 
+       //Views department professors
+       public function view_department_professors(){
+        //create query
+        $query = 'SELECT p.First_name, p.Last_name, t.Class_T_code, T.Semester, T.Year 
+        FROM teaches as t, professor as p WHERE p.Department_code = ? AND t.Prof_T_id = p.Prof_id';
 
+        //prepare satement
+        $stmt = $this->conn->prepare($query);
+        //binding param
+        $stmt->bindParam(1, $this->Department_code);
+        $stmt->bindParam(2, $this->Prof_id);
+        //execute the query
+        $stmt->execute();
 
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
+        $this->First_name = $row['First_name'];
+        $this->Last_name = $row['Last_name'];
+        $this->Class_T_code = $row['Class_T_code'];
+        $this->Semester = $row['Semester'];
+        $this->Year = $row['Year'];
 
+        return $stmt;
+
+    }
 
 
 }
