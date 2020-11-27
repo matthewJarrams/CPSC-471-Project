@@ -192,10 +192,12 @@
         //execute the query
         $stmt->execute();
 
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        $this->Class_O_code = $row['Class_O_code'];
-       
+       /* $row = $stmt->fetch(PDO::FETCH_ASSOC);
+		$this->Class_O_code = $row['Class_O_code'];
+		
+		$this->Class_O_code = $row['Class_O_code'];
+	
+       */
 
         return $stmt;
 
@@ -204,7 +206,7 @@
        //Views department professors
        public function view_department_professors(){
         //create query
-        $query = 'SELECT p.First_name, p.Last_name, t.Class_T_code, T.Semester, T.Year 
+		$query = 'SELECT p.First_name, p.Last_name, t.Class_T_code, T.Semester, T.Year 
         FROM teaches as t, professor as p WHERE p.Department_code = ? AND t.Prof_T_id = p.Prof_id';
 
         //prepare satement
@@ -214,14 +216,14 @@
         $stmt->bindParam(2, $this->Prof_id);
         //execute the query
         $stmt->execute();
-
+/*
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
         $this->First_name = $row['First_name'];
         $this->Last_name = $row['Last_name'];
         $this->Class_T_code = $row['Class_T_code'];
         $this->Semester = $row['Semester'];
-        $this->Year = $row['Year'];
+        $this->Year = $row['Year'];*/
 
         return $stmt;
 
