@@ -17,6 +17,7 @@
     require_once(CORE_PATH.DS."building.php");
     require_once(CORE_PATH.DS."class.php");
     require_once(CORE_PATH.DS."profile.php");
+    require_once(CORE_PATH.DS."review.php");
 
 
 
