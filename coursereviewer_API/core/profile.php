@@ -45,6 +45,8 @@
 		//takes attributes
 		public $Stu_id;
 		public $Class_code;
+		
+		
 
         //constructor with db connection
 
@@ -349,6 +351,29 @@
         $stmt = $this->conn->prepare($query);
         //binding param
         $stmt->bindParam(1, $this->Stu_id);
+        //execute the query
+        $stmt->execute();
+		
+        /*$row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+		$this->Stu_id = $row['Stu_id'];
+        $this->Class_code = $row['Class_code'];*/
+		
+
+        return $stmt;
+
+    }
+	
+	public function read_ClubMembership(){
+        //create query
+        $query = 'SELECT Club_name
+                FROM member_of
+				WHERE StuClubID = ?';
+
+        //prepare satement
+        $stmt = $this->conn->prepare($query);
+        //binding param
+        $stmt->bindParam(1, $this->StuClubID);
         //execute the query
         $stmt->execute();
 		
