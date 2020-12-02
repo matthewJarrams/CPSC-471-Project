@@ -24,7 +24,8 @@ if($num > 0){
         extract($row);
         $post_item = array(
             'Building_name' => $Building_name,
-            'Type' =>$Type
+            'Type' =>$Type,
+			'Average Rating'=>$row['AVG(Rating)']
         );
         array_push($post_arr['data'], $post_item);
     }

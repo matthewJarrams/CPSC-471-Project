@@ -9,6 +9,7 @@
         //class attributes
         public $Code;
         public $Description;
+		public $AVGRating;
 		
 		//teaches attributes
 		public $Prof_T_id;
@@ -25,11 +26,12 @@
         //getting class from database
         public function read(){
             //create query
-            $query = 'SELECT *
-                FROM
-                ' .$this->table;
+            $query = 'SELECT Code, Description, AVG(Rating)
+						FROM `class`, `review`, `class_review` 
+						WHERE class_review.Class_review_id = review.Review_id AND class_review.Class_code = class.Code
+						GROUP BY Code';
 
-
+		
         //prepare satement
         $stmt = $this->conn->prepare($query);
         //execute query

@@ -20,10 +20,10 @@
         //getting departments from database
         public function read(){
             //create query
-            $query = 'SELECT
-                *
-                FROM
-                ' .$this->table;
+            $query = 'SELECT club.Club_name, club.Club_description, club.Club_location, AVG(Rating)
+						FROM `club`, `review`, `club_review` 
+						WHERE club_review.Club_Review_id = review.Review_id AND club_review.Club_Name = club.Club_name
+						GROUP BY Club_name';
 
 
         //prepare satement
