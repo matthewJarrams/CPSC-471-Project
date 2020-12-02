@@ -12,8 +12,8 @@ $post = new Review($db);
 
 
 
-$post->Code = isset($_GET['Code']) ? $_GET['Code'] : die();
-$result = $post->read_reviews_class();
+$post->Club_name = isset($_GET['Club_name']) ? $_GET['Club_name'] : die();
+$result = $post->read_reviews_club();
 
 /*$post_arr = array(
     'Class_O_code' => $post->Class_O_code,
@@ -25,7 +25,7 @@ $result = $post->read_reviews_class();
     $post_arr['data'] = array();
 	while($row = $result->fetch(PDO::FETCH_ASSOC)){
         extract($row);
-        $post_item = array('Username' => $Username,'Code' => $Code, 'Would_take_again' => $Would_take_again, 'Required' => $Required, 'Textbook' => $Textbook, 'Work_load' => $Work_load, 'Difficulty' => $Difficulty, 'Semester' => $Semester, 'Year' => $Year, 'Description_review' => $Description_review, 'Rating' => $Rating, 'Date_made' => $Date_made);
+        $post_item = array('Username' => $Username,'Club_name' => $Club_name, 'Cost' => $Cost, 'Academic' => $Academic, 'Leisure' => $Leisure, 'Description_review' => $Description_review, 'Rating' => $Rating, 'Date_made' => $Date_made);
         array_push($post_arr['data'], $post_item);
     }
 

@@ -18,17 +18,14 @@ $post->Description_review = $data->Description_review;
 $post->Rating = $data->Rating;
 //$post->Date_made = $data->Date_made;
 $post->Username = $data->Username;
-$post->Class_code = $data->Class_code;
-$post->Would_take_again = $data->Would_take_again;
-$post->Required = $data->Required;
-$post->Textbook = $data->Textbook;
-$post->Work_load = $data->Work_load;
-$post->Difficulty = $data->Difficulty;
-$post->Semester = $data->Semester;
-$post->Year = $data->Year;
+$post->Club_Name = $data->Club_Name;
+$post->Cost = $data->Cost;
+$post->Academic = $data->Academic;
+$post->Leisure = $data->Leisure;
+
 
 //create post
-if($post->write_class_review()){
+if($post->write_club_review()){
     echo json_encode(
         array('message' => 'Review submitted successfuly.')
     );
