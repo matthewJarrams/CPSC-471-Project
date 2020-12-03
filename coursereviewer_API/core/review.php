@@ -1,8 +1,8 @@
 <?php
-
+	//Review class to hold all functions to retrieve reviews and write reviews to the database
     class Review{
-        //db stuff
-
+        
+		//db connection variable
         private $conn;
 
         //review attributes
@@ -41,12 +41,12 @@
 		public $Experience;
 
         //constructor with db connection
-
         public function __construct($db){
             $this->conn = $db;
         }
         
-        //getting posts form our database
+		
+        //function to retrieve all reviews from an entered class
         public function read_reviews_class(){
 			//create query
             $query = 'SELECT * FROM `user`, `makes_review`, `class`, `class_review`, `review` WHERE Code = ? AND Code = Class_Code AND class.Code = class_review.Class_code AND class_review.Class_review_id = review.Review_id AND makes_review.Review_M_id = review.Review_id AND user.ID = makes_review.Stu_R_id';
@@ -54,6 +54,7 @@
 
 			//prepare satement
 			$stmt = $this->conn->prepare($query);
+			//bind parameter entered for course code
 			$stmt->bindParam(1, $this->Code);
 			//execute query
 			$stmt->execute();
@@ -62,7 +63,7 @@
         
         }
 		
-		//getting posts form our database
+		//function to retrieve all reviews from an entered club
         public function read_reviews_club(){
 			//create query
             $query = 'SELECT * FROM `user`, `makes_review`, `club`, `club_review`, `review` WHERE club.Club_name = ? AND club.Club_name = club_review.Club_Name AND club.Club_name = club_review.Club_Name AND Club_Review_id = Review_id AND makes_review.Review_M_id = review.Review_id AND user.ID = makes_review.Stu_R_id';
@@ -70,6 +71,7 @@
 
 			//prepare satement
 			$stmt = $this->conn->prepare($query);
+			//bind parameter entered for club name
 			$stmt->bindParam(1, $this->Club_name);
 			//execute query
 			$stmt->execute();
@@ -78,7 +80,7 @@
         
         }
 		
-		//getting posts form our database
+		//function to retrieve all reviews from an entered building name
         public function read_reviews_building(){
 			//create query
             $query = 'SELECT * FROM `user`, `makes_review`, `building`, `building_review`, `review`, `experience` WHERE building.Building_name = ? AND building.Building_name = building_review.Building_name AND building_review.Building_name = experience.E_Building_name AND experience.E_review_id = Building_Review_id AND Building_Review_id = Review_id AND makes_review.Review_M_id = review.Review_id AND user.ID = makes_review.Stu_R_id';
@@ -86,6 +88,7 @@
 
 			//prepare satement
 			$stmt = $this->conn->prepare($query);
+			//bind parameter in query to building name entered
 			$stmt->bindParam(1, $this->Building_name);
 			//execute query
 			$stmt->execute();
@@ -94,20 +97,23 @@
         
         }
 
+		//function to write a new  class reivew 
 		public function write_class_review()
 		{
 			
-		//Auto increment ID
+		//Auto increment Review ID number by retrieving max id in database and adding 1
         $sqlmax = "select max(Review_id) + 1 from review";
         $sqlmaxstmt = $this->conn->prepare($sqlmax);
         //binding param
         $sqlmaxstmt->bindParam(1, $this->Review_id);
         //execute the query
         $sqlmaxstmt->execute();
+		
+		//retrieve row from query result and set equal to new review id
         $rowmax = $sqlmaxstmt->fetch(PDO::FETCH_ASSOC);
 		$this->Review_id = $rowmax['max(Review_id) + 1']; 
 		
-		//Auto increment ID
+		//get user id from entered username to put into makes_review table 
         $sqluser = "select ID from user where Username = ?";
         $sqlusersmt = $this->conn->prepare($sqluser);
         //binding param
@@ -117,7 +123,7 @@
         $rowuser = $sqlusersmt->fetch(PDO::FETCH_ASSOC);
 		$this->Stu_R_id = $rowuser['ID']; 
 		
-		//create query
+		//create query to insert into review then student who makes_review and then into class_review with all entered information
         $query1 = 'INSERT INTO Review 
          SET Review_id = :Review_id, Description_review = :Description_review, Rating = :Rating, Date_made = :Date_made';
 		$query2 = 'INSERT INTO makes_review 
@@ -153,6 +159,7 @@
         $this->Super_flag = 0;
         $this->Client_flag = 1;
         $this->Permissions = "none";*/
+		//set values not entered by user
         $this->Date_made = date('Y-m-d');
         $this->Review_M_id = $this->Review_id;
 		$this->Class_review_id = $this->Review_id;
@@ -174,9 +181,10 @@
         $stmt3->bindParam(':Semester', $this->Semester);
         $stmt3->bindParam(':Year', $this->Year);
 		
+		
+		//execute queries and return true if all are correct
 		$stmt1->execute();
 		$stmt2->execute();
-        //execute the query
         if($stmt3->execute()){
             return true;
         }
@@ -186,10 +194,11 @@
         return false;
 		}
 		
+		//function to write a new  club reivew 
 		public function write_club_review()
 		{
 			
-		//Auto increment ID
+		//Auto increment review ID for new review
         $sqlmax = "select max(Review_id) + 1 from review";
         $sqlmaxstmt = $this->conn->prepare($sqlmax);
         //binding param
@@ -197,9 +206,11 @@
         //execute the query
         $sqlmaxstmt->execute();
         $rowmax = $sqlmaxstmt->fetch(PDO::FETCH_ASSOC);
+		
+		//set id variable to new value returned
 		$this->Review_id = $rowmax['max(Review_id) + 1']; 
 		
-		//Auto increment ID
+		//Get user ID from the username entered 
         $sqluser = "select ID from user where Username = ?";
         $sqlusersmt = $this->conn->prepare($sqluser);
         //binding param
@@ -207,9 +218,10 @@
         //execute the query
         $sqlusersmt->execute();
         $rowuser = $sqlusersmt->fetch(PDO::FETCH_ASSOC);
+		//enter into makes_review the ID of the student 
 		$this->Stu_R_id = $rowuser['ID']; 
 		
-		//create query
+		//create query for intserting review into review, the student who makes the review into makes_review and the specifics into club_reiview
         $query1 = 'INSERT INTO Review 
          SET Review_id = :Review_id, Description_review = :Description_review, Rating = :Rating, Date_made = :Date_made';
 		$query2 = 'INSERT INTO makes_review 
@@ -237,7 +249,7 @@
 
         
         
-
+		//set defaults that the user does not enter
         $this->Date_made = date('Y-m-d');
         $this->Review_M_id = $this->Review_id;
 		$this->Club_Review_id = $this->Review_id;
@@ -255,9 +267,9 @@
         $stmt3->bindParam(':Academic', $this->Academic);
         $stmt3->bindParam(':Leisure', $this->Leisure);
 		
+		//execute three queries and return true if all are correct
 		$stmt1->execute();
 		$stmt2->execute();
-        //execute the query
         if($stmt3->execute()){
             return true;
         }
@@ -267,11 +279,11 @@
         return false;
 		}
 		
-		
+		//function to write a new building review to the database
 		public function write_building_review()
 		{
 			
-		//Auto increment ID
+		//Auto increment review ID for the new review to be entered
         $sqlmax = "select max(Review_id) + 1 from review";
         $sqlmaxstmt = $this->conn->prepare($sqlmax);
         //binding param
@@ -281,7 +293,7 @@
         $rowmax = $sqlmaxstmt->fetch(PDO::FETCH_ASSOC);
 		$this->Review_id = $rowmax['max(Review_id) + 1']; 
 		
-		//Auto increment ID
+		//find user ID based on the entered username to insert into makes_review to keep track of who made the review
         $sqluser = "select ID from user where Username = ?";
         $sqlusersmt = $this->conn->prepare($sqluser);
         //binding param
@@ -291,7 +303,7 @@
         $rowuser = $sqlusersmt->fetch(PDO::FETCH_ASSOC);
 		$this->Stu_R_id = $rowuser['ID']; 
 		
-		//create query
+		//create query to insert values into review, makes_review and building_review and experience
         $query1 = 'INSERT INTO Review 
          SET Review_id = :Review_id, Description_review = :Description_review, Rating = :Rating, Date_made = :Date_made';
 		$query2 = 'INSERT INTO makes_review 
@@ -324,12 +336,13 @@
 
         
         
-
+		//set default values not entered by user
         $this->Date_made = date('Y-m-d');
         $this->Review_M_id = $this->Review_id;
 		$this->Building_Review_id = $this->Review_id;
 		$this->E_review_id = $this->Review_id;
 		$this->E_Building_name = $this->Building_name;
+		
         //binding of parameters
         $stmt1->bindParam(':Review_id', $this->Review_id);
         $stmt1->bindParam(':Description_review', $this->Description_review);
@@ -346,10 +359,12 @@
         $stmt4->bindParam(':E_Building_name', $this->E_Building_name);
         $stmt4->bindParam(':Experience', $this->Experience);
 		
+		
+		//execute the 4 insert queries and return true if they are correct
 		$stmt1->execute();
 		$stmt2->execute();
 		$stmt3->execute();
-        //execute the query
+        
         if($stmt4->execute()){
             return true;
         }
