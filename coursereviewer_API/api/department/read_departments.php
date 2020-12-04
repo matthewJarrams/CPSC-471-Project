@@ -1,4 +1,7 @@
 <?php
+/*
+	File to read all of the departments in the database and print them out
+*/
 //headers
 header('Access-Control-Allow-Origin: *'); 
 header('Content-Type: application/json');
@@ -7,7 +10,6 @@ header('Content-Type: application/json');
 include_once('../../core/initialize.php');
 
 //instantiate post
-
 $post = new Department($db);
 
 
@@ -18,6 +20,7 @@ $result = $post->read();
 //get the row count
 $num = $result->rowCount();
 
+//if more than one row create an array and store all tuple column information and store them in the array for the JSON file
 if($num > 0){
     $post_arr = array();
     $post_arr['data'] = array();while($row = $result->fetch(PDO::FETCH_ASSOC)){

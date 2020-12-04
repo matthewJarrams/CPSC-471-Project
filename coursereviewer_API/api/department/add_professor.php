@@ -1,4 +1,7 @@
 <?php
+/*
+	File to add a professor that works for the department
+*/
 //headers
 header('Access-Control-Allow-Origin: *'); 
 header('Content-Type: application/json');
@@ -14,13 +17,14 @@ $post = new Department($db);
 //get raw posted data
 $data = json_decode(file_get_contents("php://input"));
 
+//format all variables with entered info
 $post->Department_code = $data->Department_code;
 $post->First_name = $data->First_name;
 $post->Last_name = $data->Last_name;
 
 
 
-//create post
+//create post and write message
 if($post->addProfessor()){
     echo json_encode(
         array('message' => 'Professor added.')

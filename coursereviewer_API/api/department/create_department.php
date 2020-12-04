@@ -1,4 +1,7 @@
 <?php
+/*
+	File to create a new department not already in the database
+*/
 //headers
 header('Access-Control-Allow-Origin: *'); 
 header('Content-Type: application/json');
@@ -21,7 +24,7 @@ $post->D_Name = $data->D_Name;
 
 
 
-//create post
+//create post and give message if successful
 if($post->create()){
     echo json_encode(
         array('message' => 'Department created.')
