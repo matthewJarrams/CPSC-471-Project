@@ -1,4 +1,7 @@
 <?php
+/*
+	File to make a review on a club based on given info
+*/
 //headers
 header('Access-Control-Allow-Origin: *'); 
 header('Content-Type: application/json');
@@ -14,6 +17,7 @@ $post = new Review($db);
 //get raw posted data
 $data = json_decode(file_get_contents("php://input"));
 
+//format variables into data
 $post->Description_review = $data->Description_review;
 $post->Rating = $data->Rating;
 //$post->Date_made = $data->Date_made;
@@ -24,7 +28,7 @@ $post->Academic = $data->Academic;
 $post->Leisure = $data->Leisure;
 
 
-//create post
+//create post and give a message 
 if($post->write_club_review()){
     echo json_encode(
         array('message' => 'Review submitted successfuly.')
