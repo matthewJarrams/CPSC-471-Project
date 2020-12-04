@@ -19,7 +19,7 @@
         //function to retrieve all buidlings in the database with the average rating based on made reviews and all information
         public function read(){
             //create query to retrieve desired information
-            $query = 'SELECT building.Building_name, Type, AVG(Rating) FROM `building`, `review`, `building_review` WHERE building_review.Building_Review_id = review.Review_id AND building_review.Building_name = building.Building_name GROUP BY building.Building_name';
+            $query = 'SELECT building.Building_name, Type FROM `building`';
 
 
         //prepare satement

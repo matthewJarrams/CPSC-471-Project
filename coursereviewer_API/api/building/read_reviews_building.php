@@ -23,6 +23,13 @@ $result = $post->read_reviews_building();
 	$post_arr = array();
 	
     $post_arr['data'] = array();
+	
+	$result2 = $post->get_avergage_building();
+	$row2 = $result2->fetch(PDO::FETCH_ASSOC);
+	array_push($post_arr['data'], 'Average rating');
+	array_push($post_arr['data'], $row2['AVG(Rating)']);
+
+	
 	while($row = $result->fetch(PDO::FETCH_ASSOC)){
         extract($row);
         $post_item = array('Username' => $Username,'Building_name' => $Building_name, 'Accessibility' => $Accessibility, 'Is_Crowded' => $Is_Crowded, 'Experience' => $Experience, 'Description_review' => $Description_review, 'Rating' => $Rating, 'Date_made' => $Date_made);

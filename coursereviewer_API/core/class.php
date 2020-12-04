@@ -25,10 +25,9 @@
         //retrieve all classes from the database and print info as well as average rating based on reviews
         public function read(){
             //create query
-            $query = 'SELECT Code, Description, AVG(Rating)
-						FROM `class`, `review`, `class_review` 
-						WHERE class_review.Class_review_id = review.Review_id AND class_review.Class_code = class.Code
-						GROUP BY Code';
+            $query = 'SELECT Code, Description
+						FROM `class` 
+						';
 
 		
 			//prepare satement
@@ -39,6 +38,7 @@
 			return $stmt;
 			
         }
+		
 
     
          //Reads a single class by a given class code 

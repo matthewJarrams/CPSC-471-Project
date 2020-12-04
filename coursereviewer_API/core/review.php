@@ -62,6 +62,44 @@
 			return $stmt;
         
         }
+		public function get_avergage()
+		{
+			$query = 'SELECT AVG(Rating) FROM `class`, `review`, `class_review` WHERE class_review.Class_review_id = review.Review_id AND class_review.Class_code = class.Code and class.Code = ?';
+			//prepare satement
+			$stmt = $this->conn->prepare($query);
+			//bind parameter entered for course code
+			$stmt->bindParam(1, $this->Code);
+			//execute query
+			$stmt->execute();
+
+			return $stmt;
+		}
+		
+		public function get_avergage_club()
+		{
+			$query = 'SELECT AVG(Rating) FROM `club`, `review`, `club_review` WHERE club_review.Club_Review_id = review.Review_id AND club_review.Club_Name = club.Club_name and club.Club_name = ?';
+			//prepare satement
+			$stmt = $this->conn->prepare($query);
+			//bind parameter entered for course code
+			$stmt->bindParam(1, $this->Club_name);
+			//execute query
+			$stmt->execute();
+
+			return $stmt;
+		}
+		
+		public function get_avergage_building()
+		{
+			$query = 'SELECT AVG(Rating) FROM `building`, `review`, `building_review` WHERE building_review.Building_Review_id = review.Review_id AND building_review.Building_name = building.Building_name GROUP BY building.Building_name and building.Building_name = ?';
+			//prepare satement
+			$stmt = $this->conn->prepare($query);
+			//bind parameter entered for course code
+			$stmt->bindParam(1, $this->Building_name);
+			//execute query
+			$stmt->execute();
+
+			return $stmt;
+		}
 		
 		//function to retrieve all reviews from an entered club
         public function read_reviews_club(){

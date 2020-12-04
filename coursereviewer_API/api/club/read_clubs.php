@@ -26,7 +26,7 @@ if($num > 0){
             'Club_name' => $Club_name,
             'Club_description' =>$Club_description,
             'Club_location' => $Club_location,
-			'Average Rating'=> $row['AVG(Rating)']
+			
         );
         array_push($post_arr['data'], $post_item);
     }

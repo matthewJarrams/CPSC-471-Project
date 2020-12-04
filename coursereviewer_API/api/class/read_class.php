@@ -18,15 +18,16 @@ $result = $post->read();
 //get the row count
 $num = $result->rowCount();
 
+
 if($num > 0){
     $post_arr = array();
     $post_arr['data'] = array();
+	
 	while($row = $result->fetch(PDO::FETCH_ASSOC)){
         extract($row);
         $post_item = array(
             'Code' => $Code,
-            'Description' =>$Description,
-			'AVG(Rating)'=>$row['AVG(Rating)']
+			'Description' => $Description,
         );
         array_push($post_arr['data'], $post_item);
     }

@@ -19,10 +19,9 @@
         //retrieve all clubs from the database and display the information as well as the average rating based on ratings given by users
         public function read(){
             //create query to retrieve the desired information
-            $query = 'SELECT club.Club_name, club.Club_description, club.Club_location, AVG(Rating)
-						FROM `club`, `review`, `club_review` 
-						WHERE club_review.Club_Review_id = review.Review_id AND club_review.Club_Name = club.Club_name
-						GROUP BY Club_name';
+            $query = 'SELECT club.Club_name, club.Club_description, club.Club_location
+						FROM `club` 
+						';
 
 
         //prepare satement
@@ -33,6 +32,7 @@
         return $stmt;
         
         }
+		
 
     
         //Retrieves the club that the user specifys

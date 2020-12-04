@@ -23,6 +23,12 @@ $result = $post->read_reviews_club();
 	$post_arr = array();
 	
     $post_arr['data'] = array();
+	
+	$result2 = $post->get_avergage_club();
+	$row2 = $result2->fetch(PDO::FETCH_ASSOC);
+	array_push($post_arr['data'], 'Average rating');
+	array_push($post_arr['data'], $row2['AVG(Rating)']);
+	
 	while($row = $result->fetch(PDO::FETCH_ASSOC)){
         extract($row);
         $post_item = array('Username' => $Username,'Club_name' => $Club_name, 'Cost' => $Cost, 'Academic' => $Academic, 'Leisure' => $Leisure, 'Description_review' => $Description_review, 'Rating' => $Rating, 'Date_made' => $Date_made);
