@@ -1,4 +1,7 @@
 <?php
+/*
+	File to read all classes in the database
+*/
 //headers
 header('Access-Control-Allow-Origin: *'); 
 header('Content-Type: application/json');
@@ -7,7 +10,6 @@ header('Content-Type: application/json');
 include_once('../../core/initialize.php');
 
 //instantiate post
-
 $post = new Course($db);
 
 
@@ -18,11 +20,13 @@ $result = $post->read();
 //get the row count
 $num = $result->rowCount();
 
-
+//if number of rows is greater than zero
 if($num > 0){
+	//create an array to store results 
     $post_arr = array();
     $post_arr['data'] = array();
 	
+	//while more rows store columns in rows
 	while($row = $result->fetch(PDO::FETCH_ASSOC)){
         extract($row);
         $post_item = array(

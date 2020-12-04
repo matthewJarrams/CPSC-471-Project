@@ -1,4 +1,7 @@
 <?php
+/*
+	File to add a professor who teaches a class
+*/
 //headers
 header('Access-Control-Allow-Origin: *'); 
 header('Content-Type: application/json');
@@ -14,6 +17,7 @@ $post = new Course($db);
 //get raw posted data
 $data = json_decode(file_get_contents("php://input"));
 
+//format entered information into variables
 //$post->ID = $data->ID;
 $post->Prof_T_id = $data->Prof_T_id;
 $post->Class_T_code = $data->Class_T_code;
@@ -22,7 +26,7 @@ $post->Semester = $data->Semester;
 
 
 
-//create post
+//create post and give message
 if($post->add_prof()){
     echo json_encode(
         array('message' => 'Professor added to class.')

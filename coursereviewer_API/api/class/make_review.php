@@ -1,4 +1,7 @@
 <?php
+/*
+	File to submit a review for a class with entered information
+*/
 //headers
 header('Access-Control-Allow-Origin: *'); 
 header('Content-Type: application/json');
@@ -14,6 +17,7 @@ $post = new Review($db);
 //get raw posted data
 $data = json_decode(file_get_contents("php://input"));
 
+//format variables with entered information
 $post->Description_review = $data->Description_review;
 $post->Rating = $data->Rating;
 //$post->Date_made = $data->Date_made;
@@ -27,7 +31,7 @@ $post->Difficulty = $data->Difficulty;
 $post->Semester = $data->Semester;
 $post->Year = $data->Year;
 
-//create post
+//create post and get a success or reject message
 if($post->write_class_review()){
     echo json_encode(
         array('message' => 'Review submitted successfuly.')
@@ -40,4 +44,4 @@ if($post->write_class_review()){
 }
 
 
-?>
+?>	
