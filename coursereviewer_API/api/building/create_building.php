@@ -1,4 +1,7 @@
 <?php
+/*
+	File to create a building and add it to the database
+*/
 //headers
 header('Access-Control-Allow-Origin: *'); 
 header('Content-Type: application/json');
@@ -14,13 +17,14 @@ $post = new Building($db);
 //get raw posted data
 $data = json_decode(file_get_contents("php://input"));
 
+//format variables with entered information
 //$post->ID = $data->ID;
 $post->Building_name = $data->Building_name;
 $post->Type = $data->Type;
 
 
 
-//create post
+//create post with message
 if($post->create()){
     echo json_encode(
         array('message' => 'Building created.')

@@ -1,4 +1,7 @@
 <?php
+/*
+	File to make a review on a building with entered information
+*/
 //headers
 header('Access-Control-Allow-Origin: *'); 
 header('Content-Type: application/json');
@@ -14,6 +17,7 @@ $post = new Review($db);
 //get raw posted data
 $data = json_decode(file_get_contents("php://input"));
 
+//format inputted information  into variables
 $post->Description_review = $data->Description_review;
 $post->Rating = $data->Rating;
 //$post->Date_made = $data->Date_made;
@@ -24,7 +28,7 @@ $post->Is_Crowded = $data->Is_Crowded;
 $post->Experience = $data->Experience;
 
 
-//create post
+//create post and give message 
 if($post->write_building_review()){
     echo json_encode(
         array('message' => 'Review submitted successfuly.')

@@ -1,4 +1,7 @@
 <?php
+/*
+	File to retrieve all buildings in the database
+*/
 //headers
 header('Access-Control-Allow-Origin: *'); 
 header('Content-Type: application/json');
@@ -7,7 +10,6 @@ header('Content-Type: application/json');
 include_once('../../core/initialize.php');
 
 //instantiate post
-
 $post = new Building($db);
 
 
@@ -18,7 +20,9 @@ $result = $post->read();
 //get the row count
 $num = $result->rowCount();
 
+//if more than one row returned
 if($num > 0){
+	//create an array and store tuple columns into the array
     $post_arr = array();
     $post_arr['data'] = array();while($row = $result->fetch(PDO::FETCH_ASSOC)){
         extract($row);
@@ -27,6 +31,7 @@ if($num > 0){
             'Type' =>$Type,
 			
         );
+		//push array values to make JSON
         array_push($post_arr['data'], $post_item);
     }
 
