@@ -1,4 +1,9 @@
 <?php
+
+/*
+	File to read a single user from the database with a given ID that then returns information on the user
+*/
+
 //headers
 header('Access-Control-Allow-Origin: *'); 
 header('Content-Type: application/json');
@@ -11,10 +16,12 @@ include_once('../../core/initialize.php');
 $post = new User($db);
 
 
-
+//check if ID is set
 $post->ID = isset($_GET['ID']) ? $_GET['ID'] : die();
+//call function in user class
 $post->read_single();
 
+//format array with returned column data
 $post_arr = array(
     'ID' => $post->ID,
     'First_name' => $post->First_name,

@@ -16,7 +16,7 @@
             $this->conn = $db;
         }
         
-        //function to retrieve all buidlings in the database with the average rating based on made reviews and all information
+        //function to retrieve all buidlings in the database with all information
         public function read(){
             //create query to retrieve desired information
             $query = 'SELECT building.Building_name, Type FROM `building`';

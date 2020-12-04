@@ -1,4 +1,8 @@
 <?php
+/*
+	file to update information on the user with the given fields
+*/
+
 //headers
 header('Access-Control-Allow-Origin: *'); 
 header('Content-Type: application/json');
@@ -14,6 +18,7 @@ $post = new User($db);
 //get raw posted data
 $data = json_decode(file_get_contents("php://input"));
 
+//format the data to be changed
 $post->ID = $data->ID;
 $post->First_name = $data->First_name;
 $post->Last_name = $data->Last_name;
@@ -27,7 +32,7 @@ $post->email_address = $data->email_address;
 //$post->Role = $data->Role;
 $post->University = $data->University;
 
-//update post
+//update post and give user info
 if($post->update()){
     echo json_encode(
         array('message' => 'User updated.')

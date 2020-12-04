@@ -1,4 +1,8 @@
 <?php
+/*
+	File to delete a user with a given user ID in the database
+*/
+
 //headers
 header('Access-Control-Allow-Origin: *'); 
 header('Content-Type: application/json');
@@ -16,7 +20,7 @@ $data = json_decode(file_get_contents("php://input"));
 
 $post->ID = $data->ID;
 
-//delete user
+//delete user and print out message
 if($post->delete()){
     echo json_encode(
         array('message' => 'User deleted.')

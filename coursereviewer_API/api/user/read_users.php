@@ -1,4 +1,8 @@
 <?php
+/*
+	This file reads all the users in the database used for the admin to find useres
+*/
+
 //headers
 header('Access-Control-Allow-Origin: *'); 
 header('Content-Type: application/json');
@@ -18,6 +22,7 @@ $result = $post->read();
 //get the row count
 $num = $result->rowCount();
 
+//if result is more than 0 create array with the tuple columns
 if($num > 0){
     $post_arr = array();
     $post_arr['data'] = array();while($row = $result->fetch(PDO::FETCH_ASSOC)){

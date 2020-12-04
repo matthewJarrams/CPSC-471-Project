@@ -62,8 +62,11 @@
 			return $stmt;
         
         }
+		
+		//function to retrieve average of class given
 		public function get_avergage()
 		{
+			//create query to get average rating of class
 			$query = 'SELECT AVG(Rating) FROM `class`, `review`, `class_review` WHERE class_review.Class_review_id = review.Review_id AND class_review.Class_code = class.Code and class.Code = ?';
 			//prepare satement
 			$stmt = $this->conn->prepare($query);
@@ -75,8 +78,10 @@
 			return $stmt;
 		}
 		
+		//function to retrieve average of club given
 		public function get_avergage_club()
 		{
+			//create query to get average rating of club
 			$query = 'SELECT AVG(Rating) FROM `club`, `review`, `club_review` WHERE club_review.Club_Review_id = review.Review_id AND club_review.Club_Name = club.Club_name and club.Club_name = ?';
 			//prepare satement
 			$stmt = $this->conn->prepare($query);
@@ -88,8 +93,10 @@
 			return $stmt;
 		}
 		
+		//function to retrieve average of building given
 		public function get_avergage_building()
 		{
+			//create query to get average rating of building
 			$query = 'SELECT AVG(Rating) FROM `building`, `review`, `building_review` WHERE building_review.Building_Review_id = review.Review_id AND building_review.Building_name = building.Building_name GROUP BY building.Building_name and building.Building_name = ?';
 			//prepare satement
 			$stmt = $this->conn->prepare($query);

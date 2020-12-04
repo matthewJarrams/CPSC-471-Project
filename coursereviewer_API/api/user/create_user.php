@@ -1,4 +1,8 @@
 <?php
+/*
+	File to create a user account by formatting data and writing to the database
+*/
+
 //headers
 header('Access-Control-Allow-Origin: *'); 
 header('Content-Type: application/json');

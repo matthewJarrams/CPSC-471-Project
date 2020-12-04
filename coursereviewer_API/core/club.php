@@ -16,7 +16,7 @@
             $this->conn = $db;
         }
         
-        //retrieve all clubs from the database and display the information as well as the average rating based on ratings given by users
+        //retrieve all clubs from the database and display the information 
         public function read(){
             //create query to retrieve the desired information
             $query = 'SELECT club.Club_name, club.Club_description, club.Club_location

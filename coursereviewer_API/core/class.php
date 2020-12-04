@@ -22,9 +22,9 @@
             $this->conn = $db;
         }
         
-        //retrieve all classes from the database and print info as well as average rating based on reviews
+        //retrieve all classes from the database and print info 
         public function read(){
-            //create query
+            //create query to get all classes
             $query = 'SELECT Code, Description
 						FROM `class` 
 						';
