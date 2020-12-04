@@ -1,4 +1,7 @@
 <?php
+/*
+	File to retrieve all of the clubs that a student is a member of 
+*/
 //headers
 header('Access-Control-Allow-Origin: *'); 
 header('Content-Type: application/json');
@@ -7,11 +10,10 @@ header('Content-Type: application/json');
 include_once('../../core/initialize.php');
 
 //instantiate post
-
 $post = new Profile($db);
 
 
-
+//call function to connect to database
 $post->StuClubID = isset($_GET['StuClubID']) ? $_GET['StuClubID'] : die();
 $result = $post->read_ClubMembership();
 
@@ -19,7 +21,7 @@ $result = $post->read_ClubMembership();
     'Class_O_code' => $post->Class_O_code,
    
 );*/
-
+	//create array to hold tuple and column info 
 	$post_arr = array();
     $post_arr['data'] = array();
 	while($row = $result->fetch(PDO::FETCH_ASSOC)){

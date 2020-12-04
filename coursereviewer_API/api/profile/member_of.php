@@ -1,4 +1,9 @@
 <?php
+/*
+
+	File to link a club to a student as they are a member of this club
+
+*/
 //headers
 header('Access-Control-Allow-Origin: *'); 
 header('Content-Type: application/json');
@@ -14,11 +19,11 @@ $post = new Profile($db);
 //get raw posted data
 $data = json_decode(file_get_contents("php://input"));
 
-
+//format information with the correct variable
 $post->StuClubID = $data->StuClubID;
 $post->Club_name = $data->Club_name;
 
-//create post
+//create post and write message
 if($post->MemberOf()){
     echo json_encode(
         array('message' => 'Club membership added successfully.')

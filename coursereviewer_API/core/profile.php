@@ -356,10 +356,10 @@
 			$stmt->execute();
 			
 			//retrieve row from query and set variables from returned data
-			$row = $stmt->fetch(PDO::FETCH_ASSOC);
+			/*$row = $stmt->fetch(PDO::FETCH_ASSOC);
 
 			$this->TA_ID = $row['TA_ID'];
-			$this->Class_name = $row['Class_name'];
+			$this->Class_name = $row['Class_name'];*/
 			
 
 			return $stmt;

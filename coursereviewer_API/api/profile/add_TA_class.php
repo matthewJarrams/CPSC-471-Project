@@ -1,4 +1,7 @@
 <?php
+/*
+	File to add a class that a TA has taught
+*/
 //headers
 header('Access-Control-Allow-Origin: *'); 
 header('Content-Type: application/json');
@@ -14,11 +17,11 @@ $post = new Profile($db);
 //get raw posted data
 $data = json_decode(file_get_contents("php://input"));
 
-
+//set information entered to variables
 $post->TA_ID = $data->TA_ID;
 $post->Class_name = $data->Class_name;
 
-//create post
+//create post and write message
 if($post->AddTAClass()){
     echo json_encode(
         array('message' => 'TA class added successfully.')
