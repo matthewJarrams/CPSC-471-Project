@@ -52,7 +52,7 @@ if (isset($_SESSION['ID']) && isset($_SESSION['Username'])) {
 		// There does exist users in the database
 		if ($resultCheck > 0) {
 			
-			$sql4 = "SELECT * FROM `user`, `club`, `club_review`, `review`, `makes_review` WHERE 'Chess' = club.Club_name AND club.Club_name = club_review.Club_Name AND club_review.Club_Review_id = review.Review_id AND makes_review.Review_M_id = review.Review_id AND user.ID = makes_review.Stu_R_id";
+			$sql4 = "SELECT * FROM `user`, `club`, `club_review`, `review`, `makes_review` WHERE '$query' = club.Club_name AND club.Club_name = club_review.Club_Name AND club_review.Club_Review_id = review.Review_id AND makes_review.Review_M_id = review.Review_id AND user.ID = makes_review.Stu_R_id";
 			$result4 = mysqli_query($conn, $sql4);
 			$resultCheck4 = mysqli_num_rows($result4);
 
@@ -88,5 +88,6 @@ if (isset($_SESSION['ID']) && isset($_SESSION['Username'])) {
 	}
 	
 ?>
+<a href="mainScreen.php" class = "homeLblPos">Home Screen</a>
 </body>
 </html>

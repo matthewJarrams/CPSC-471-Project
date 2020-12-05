@@ -95,5 +95,6 @@ if (isset($_SESSION['ID']) && isset($_SESSION['Username'])) {
 	}
 	
 ?>
+<a href="mainScreen.php" class = "homeLblPos">Home Screen</a>
 </body>
 </html>
