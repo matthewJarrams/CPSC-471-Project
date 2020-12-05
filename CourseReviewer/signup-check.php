@@ -93,7 +93,7 @@ if (isset($_POST['fname']) && isset($_POST['lname'])
             // sql query to insert account info into database
 
             $sql2 = "INSERT INTO user(ID, First_name, Last_name, Date_made, Username,
-            Password, Super_flag, Permissions, Client_flag, email_address, Role, Univeristy) 
+            Password, Super_flag, Permissions, Client_flag, email_address, Role, University) 
             VALUES ('$ID','$fname','$lname','$currentDateTime','$uname',
             '$password','$super_flag','$permission','$client_flag','$email','$role', '$university')" ;
                         

@@ -47,7 +47,8 @@ if (isset($_SESSION['ID']) && isset($_SESSION['Username'])) {
             $Code = $row['Code'];
 			echo "<tables>";
 			echo "<TR>";
-			echo "<td><a href=\"search-reviews.php?LinkCode =" .$Code . "\">". $Code ."</a></td>";
+			echo "<TD>$Code</TD>";
+			//echo "<td><a href=\"search-reviews.php?LinkCode =" .$Code . "\">". $Code ."</a></td>";
 			echo "<TD>".$row['Description']."</TD>";
 			echo"</TR>";
             

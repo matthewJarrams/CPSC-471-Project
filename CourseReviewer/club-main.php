@@ -40,7 +40,7 @@ if (isset($_SESSION['ID']) && isset($_SESSION['Username'])) {
 		<a href="mainScreen.php" class = "homeLblPos">Home Screen</a>
 
     </form>
-	<form action="submit-class-review.php" method="post">   
+	<form action="submit-club-review.php" method="post">   
         
        	<button type="Club"> Make Review </button>
         <a href="logout.php" class = "logoutLblPos">Logout</a>
