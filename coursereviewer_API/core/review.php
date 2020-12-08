@@ -97,7 +97,7 @@
 		public function get_avergage_building()
 		{
 			//create query to get average rating of building
-			$query = 'SELECT AVG(Rating) FROM `building`, `review`, `building_review` WHERE building_review.Building_Review_id = review.Review_id AND building_review.Building_name = building.Building_name GROUP BY building.Building_name and building.Building_name = ?';
+			$query = 'SELECT AVG(Rating) FROM `building`, `review`, `building_review` WHERE building_review.Building_Review_id = review.Review_id AND building_review.Building_name = building.Building_name and building.Building_name = ? GROUP BY building.Building_name';
 			//prepare satement
 			$stmt = $this->conn->prepare($query);
 			//bind parameter entered for course code
