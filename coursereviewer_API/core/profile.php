@@ -53,7 +53,17 @@
         public function __construct($db){
             $this->conn = $db;
         }
-        
+
+
+		public function get_minor()
+		{
+			$query = 'SELECT`MinD_code` FROM `minors_in`, user WHERE `Stu_ID` = ID and ID = ?';
+			$stmt = $this->conn->prepare($query);
+			$stmt->bindParam(1, $this->ID);
+			$stmt->execute();
+			return $stmt;
+		
+		}
 
 		//Reads a single profile given the Id number
 		public function read_single(){
@@ -73,9 +83,9 @@
 			{
 				//create query to retrieve the profile info of the undergraduate student
 				$query = 'SELECT 
-						ID, First_name, Last_name, Date_made, Username, email_address, University, Dep_code, Has_graduated, Year, Concentration, Faculty, MinD_code
-						FROM user, undergraduate_student, minors_in 
-						WHERE ID = STU_ID AND ID = S_id AND ID = ? LIMIT 1';
+						ID, First_name, Last_name, Date_made, Username, email_address, University, Dep_code, Has_graduated, Year, Concentration, Faculty
+						FROM user, undergraduate_student
+						WHERE ID = S_id AND ID = ? LIMIT 1';
 
 				//prepare satement
 				$stmt = $this->conn->prepare($query);
@@ -101,7 +111,7 @@
 				$this->Year = $row['Year'];
 				$this->Concentration = $row['Concentration'];
 				$this->UGFaculty = $row['Faculty'];
-				$this->MinD_code = $row['MinD_code'];
+				//$this->MinD_code = $row['MinD_code'];
 
 
 				return $stmt;
@@ -112,9 +122,9 @@
 			{
 				//create query to get grad students information
 				$query = 'SELECT 
-						ID, First_name, Last_name, Date_made, Username, email_address, University, GDep_code, Faculty, Has_graduated, Research_interest, MinD_code
-						FROM user, graduate_student, minors_in
-						WHERE ID = STU_ID AND ID = SG_id AND ID = ? LIMIT 1';
+						ID, First_name, Last_name, Date_made, Username, email_address, University, GDep_code, Faculty, Has_graduated, Research_interest
+						FROM user, graduate_student
+						WHERE ID = SG_id AND ID = ? LIMIT 1';
 
 				//prepare satement
 				$stmt = $this->conn->prepare($query);
@@ -140,7 +150,7 @@
 				$this->GFaculty = $row['Faculty'];
 				$this->GHas_graduated = $row['Has_graduated'];
 				$this->Research_interest = $row['Research_interest'];
-				$this->MinD_code = $row['MinD_code'];
+				//$this->MinD_code = $row['MinD_code'];
 
 
 				return $stmt;
